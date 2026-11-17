@@ -1,0 +1,6 @@
+Site TopDramas com duas páginas de filme.
+
+• index.html — O CEO que Sentiu Minha Gravidez (player Vimeo).
+• ele-devia-tudo-a-mim.html — Ele Devia Tudo a Mim (player Vimeo vertical).
+
+Mantenha capa-080.webp, capa-108.webp e topdramas-logo.png na mesma pasta dos arquivos HTML.

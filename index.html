@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11100f">
+  <meta name="description" content="Assista Ele Devia Tudo a Mim.">
+  <title>Ele Devia Tudo a Mim</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #100a17;
+      --panel: #1b1126;
+      --text: #fff8fe;
+      --muted: #c5b3cf;
+      --gold: #ff9410;
+      --gold-light: #f09ae9;
+      --brand-yellow: #ffd526;
+      --brand-orange: #ff8c0a;
+      --brand-purple: #9227d4;
+      --brand-pink: #ed37b6;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .page-shell { min-height: 100vh; overflow: hidden; }
+    .hero {
+      min-height: 740px;
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      background: #1c1224;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -36px;
+      z-index: -2;
+      background: url("capa-108.webp") center 36% / cover no-repeat;
+      filter: blur(22px) brightness(.38) saturate(.82);
+      transform: scale(1.06);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(16,10,23,.98) 0%, rgba(16,10,23,.86) 39%, rgba(16,10,23,.38) 73%, rgba(16,10,23,.48) 100%),
+        linear-gradient(0deg, var(--bg) 0%, transparent 28%, rgba(20,8,30,.16) 100%);
+    }
+    .brandbar { width: min(1180px, calc(100% - 64px)); margin: 28px auto 0; }
+    .brand-logo { display: block; width: 248px; height: auto; border-radius: 5px; }
+    .hero-content {
+      width: min(1180px, calc(100% - 64px));
+      margin: auto;
+      padding: 76px 0 93px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(230px, .72fr);
+      align-items: center;
+      gap: clamp(48px, 10vw, 145px);
+    }
+    .film-copy { max-width: 630px; }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold-light);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 27px; height: 1px; background: var(--gold); }
+    h1 {
+      max-width: 680px;
+      margin: 20px 0 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      font-size: clamp(42px, 5.2vw, 70px);
+      line-height: .99;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+    h1 span { display: block; background: linear-gradient(92deg, var(--brand-purple), var(--brand-pink)); -webkit-background-clip: text; background-clip: text; color: transparent; font-style: italic; }
+    .details { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; color: #e8ddeb; font-size: 13px; }
+    .details .dot { width: 3px; height: 3px; border-radius: 50%; background: #bc58e8; }
+    .description { max-width: 475px; margin: 22px 0 30px; color: #d0c8bf; font-size: 15px; line-height: 1.75; }
+    .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .button {
+      min-height: 49px;
+      padding: 0 20px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      font-size: 13px;
+      font-weight: 750;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: #25100d; background: linear-gradient(120deg, var(--brand-yellow), var(--brand-orange)); box-shadow: 0 8px 30px rgba(255,140,10,.24); }
+    .button-primary:hover { background: linear-gradient(120deg, #ffe45b, #ff9e2c); }
+    .button svg { width: 17px; height: 17px; }
+    .poster-wrap { justify-self: end; position: relative; width: min(100%, 300px); }
+    .poster-wrap::after { content: ""; position: absolute; inset: 10px -10px -10px 10px; z-index: -1; border: 1px solid rgba(196,105,255,.46); border-radius: 7px; }
+    .poster { display: block; width: 100%; height: auto; border-radius: 5px; box-shadow: 0 26px 65px rgba(0,0,0,.42); }
+    .section { width: min(1180px, calc(100% - 64px)); margin: 0 auto; }
+    .watch-section { padding: 26px 0 82px; scroll-margin-top: 25px; }
+    .section-heading { margin: 0 0 18px; display: flex; justify-content: space-between; align-items: end; gap: 20px; }
+    .section-heading h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-weight: 500; font-size: 29px; letter-spacing: -.025em; }
+    .section-heading p { margin: 0; color: #ad9bb6; font-size: 12px; }
+    .player {
+      min-height: 420px;
+      width: min(100%, 420px);
+      min-height: 0;
+      aspect-ratio: 9 / 16;
+      margin-inline: auto;
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(193,104,255,.24);
+      border-radius: 8px;
+      background:
+        radial-gradient(ellipse at center, rgba(136,55,205,.2), transparent 48%),
+        linear-gradient(145deg, #21132d, #120d18 70%);
+    }
+    .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .player::before, .player::after { content: ""; position: absolute; background: rgba(230,180,255,.045); }
+    .player:has(iframe)::before, .player:has(iframe)::after { display: none; }
+    .player::before { width: 1px; height: 100%; left: 50%; }
+    .player::after { width: 100%; height: 1px; top: 50%; }
+    .player-content { position: relative; z-index: 1; max-width: 430px; padding: 35px 24px; text-align: center; }
+    .play-ring { width: 66px; height: 66px; margin: 0 auto 22px; display: grid; place-items: center; color: var(--gold-light); border: 1px solid rgba(195,105,255,.58); border-radius: 50%; background: rgba(146,39,212,.1); }
+    .play-ring svg { width: 22px; height: 22px; margin-left: 3px; }
+    .player-content h3 { margin: 0 0 8px; font-family: Georgia, "Times New Roman", serif; font-size: 25px; font-weight: 500; }
+    .player-content p { margin: 0; color: #b8a9c2; font-size: 13px; line-height: 1.65; }
+    .player-note { margin-top: 20px; color: #8f7e9a; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    :focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+    @media (max-width: 760px) {
+      .hero { min-height: auto; }
+      .brandbar, .hero-content, .section { width: min(100% - 40px, 560px); }
+      .brandbar { margin-top: 20px; }
+      .brand-logo { width: min(53vw, 230px); }
+      .hero-content { padding: 48px 0 58px; grid-template-columns: 1fr; gap: 26px; align-items: start; }
+      .film-copy { grid-column: 1; grid-row: 2; }
+      .poster-wrap { justify-self: start; grid-column: 1; grid-row: 1; width: min(38vw, 150px); margin: 0; }
+      .poster-wrap::after { inset: 6px -6px -6px 6px; }
+      .eyebrow { font-size: 9px; }
+      h1 { margin: 15px 0 13px; font-size: clamp(40px, 10vw, 57px); }
+      .description { margin: 17px 0 22px; font-size: 14px; }
+      .button { min-height: 45px; padding: 0 15px; font-size: 12px; }
+      .watch-section { padding: 15px 0 54px; }
+      .section-heading { align-items: start; flex-direction: column; gap: 7px; }
+      .section-heading h2 { font-size: 26px; }
+      .player { min-height: 0; }
+    }
+    @media (max-width: 390px) {
+      .brandbar, .hero-content, .section { width: calc(100% - 32px); }
+      .actions { gap: 8px; }
+      .button { padding: 0 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero" id="inicio">
+      <div class="brandbar"><img class="brand-logo" src="topdramas-logo.png" alt="TopDramas"></div>
+      <div class="hero-content" id="filme">
+        <div class="film-copy">
+          <div class="eyebrow">O filme</div>
+          <h1>O CEO que <span>Sentiu Minha Gravidez</span></h1>
+          <div class="details" aria-label="Informações do filme">
+            <span>Filme</span><span class="dot"></span><span>Romance</span>
+          </div>
+          <p class="description">Uma história de amor, escolhas e reviravoltas. Dê o play e descubra cada detalhe dessa jornada.</p>
+          <div class="actions">
+            <a class="button button-primary" href="#player">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.8c0-.78.85-1.25 1.5-.83l9.2 5.94a1 1 0 0 1 0 1.68l-9.2 5.94A1 1 0 0 1 8 17.7V5.8Z"/></svg>
+              Assistir filme
+            </a>
+          </div>
+        </div>
+        <div class="poster-wrap"><img class="poster" src="capa-108.webp" alt="Pôster do filme Ele Devia Tudo a Mim"></div>
+      </div>
+    </header>
+    <main>
+      <section class="section watch-section" id="player" aria-labelledby="watch-title">
+        <div class="section-heading">
+          <h2 id="watch-title">Assista ao filme</h2>
+          <p>Assista ao filme diretamente nesta página.</p>
+        </div>
+        <div class="player" aria-label="Área do player de vídeo">
+          <iframe src="https://player.vimeo.com/video/1247601746?autopause=0&amp;player_id=0&amp;app_id=58479" title="Ele Devia Tudo a Mim (Dublado) • Loja MVI Doramas" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </section>
+    </main>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
